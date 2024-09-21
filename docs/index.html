@@ -1,9 +1,53 @@
-const ui = SwaggerUIBundle({
-  url: "api_spec.yaml",
-  dom_id: '#swagger-ui',
-  presets: [
-    SwaggerUIBundle.presets.apis,
-    SwaggerUIStandalonePreset
-  ],
-  layout: "StandaloneLayout"
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <!-- Swagger UI CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.15.0/swagger-ui.css"
+    integrity="sha512-+VYzbkMXu7wI3ge9WJ6ZBjHEXbJzMb3Lp5E+v2k2RkCZ8MwDY5lRQbWfPDKjtPjhxqF65g6pghIWq+BojUo2eg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    /* Optional: Set the height of Swagger UI */
+    #swagger-ui {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+
+  <!-- Swagger UI JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.15.0/swagger-ui-bundle.js"
+    integrity="sha512-VyVHqQ27FrGClmvgSxdnFtmPHNJ8uZLOoeZw6YefPvEU2r4FvW+7P6IbzW4nqL4BwAtQJ0vz93zIDfN78zMYIw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.15.0/swagger-ui-standalone-preset.js"
+    integrity="sha512-gouKMn0YlFhkkV8gX+szxJ9Zf7VVC3dK5GBjTMFV8ZyXGqOUoMkYjvwicQGPr3zPxV6K0DB98CFzIVVnFbfUEA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script>
+    window.onload = function() {
+      SwaggerUIBundle({
+        url: "api_spec.yaml", // Ensure this file is in the same directory
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout"
+      });
+    };
+  </script>
+</body>
+</html>
