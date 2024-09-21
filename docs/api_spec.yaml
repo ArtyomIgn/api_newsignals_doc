@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Newsignals.ai API
+  description: |
+    This API retrieves the latest 10 news items along with associated tickers and probabilities. Each request returns the latest 10 news items in one response. 
+    The request limit is 1 request per second.
+  version: "1.0.0"
+servers:
+  - url: https://oh.sssh.it
+    description: Production server
+
+paths:
+  /news/signals:
+    get:
+      summary: Retrieve the latest 10 news signals
+      description: |
+        Fetches the latest 10 news items along with their tickers, probabilities, and timestamps. 
+        Each request returns 10 items, with details including the time they were published and made available through the API.
+      responses:
+        '200':
+          description: A list of the latest 10 news items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tickers:
+                          type: string
+                          example: "CVM"
+                        probability:
+                          type: string
+                          example: "99"
+                        published_primary_source:
+                          type: string
+                          format: date-time
+                          example: "2024-09-16 11:30:00 UTC"
+                        available_through_api:
+                          type: string
+                          format: date-time
+                          example: "2024-09-16 11:30:24.694Z"
+        '400':
+          description: Bad request, possibly due to rate limit violation
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    NewsItem:
+      type: object
+      properties:
+        tickers:
+          type: string
+          description: The stock tickers related to the news item
+        probability:
+          type: string
+          description: The probability associated with the news event
+        published_primary_source:
+          type: string
+          format: date-time
+          description: Date and time when the news was first published
+        available_through_api:
+          type: string
+          format: date-time
+          description: Date and time when the news was made available through the API
+      example:
+        tickers: "CVM"
+        probability: "99"
+        published_primary_source: "2024-09-16 11:30:00 UTC"
+        available_through_api: "2024-09-16 11:30:24.694Z"
