@@ -8,13 +8,19 @@ info:
     ## API Overview
     This API retrieves the latest 10 news items along with associated tickers and probabilities. Each request returns the latest 10 news items in one response. 
     The request limit is 1 request per second.
+    
+    ## Code Examples
+    Seek code examples in this [GitHub repository](https://github.com/ArtyomIgn/newsignals_api).
+    
+    ## Historical Data for Backtesting
+    Get historical data for backtesting [here](https://discord.com/channels/1016026344154464347/1114231712495452170/1284247834937266297).
   version: "1.0.0"
 servers:
   - url: https://oh.sssh.it
     description: Production server
 
 paths:
-  /news/signals:
+  /news/free-signals:
     get:
       summary: Retrieve the latest 10 news signals
       description: |
@@ -61,12 +67,12 @@ components:
           type: string
           format: date-time
           description: Date and time when the news was first published
-          example: "2024-09-16 11:30:00 UTC"
+          example: "2024-09-16T11:30:00Z"
         available_through_api:
           type: string
           format: date-time
           description: Date and time when the news was made available through the API
-          example: "2024-09-16 11:30:24.694Z"
+          example: "2024-09-16T11:30:24.694Z"
 
 externalDocs:
   description: Find out how to get a token
